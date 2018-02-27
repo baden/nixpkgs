@@ -10,13 +10,13 @@
 with lib;
 stdenv.mkDerivation rec {
   name = "kicad-unstable-${version}";
-  version = "2017-12-11";
+  version = "2018-02-27";
 
   src = fetchFromGitHub {
     owner = "KICad";
     repo = "kicad-source-mirror";
-    rev = "1955f252265c38a313f6c595d6c4c637f38fd316";
-    sha256 = "15cc81h7nh5dk6gj6mc4ylcgdznfriilhb43n1g3xwyq3s8iaibz";
+    rev = "0d794b20bb5c308183cbd339be7a3dcf8a896d03";
+    sha256 = "0c1rigr928xfpmxb9iv55rd4brjg0d95l8qbppa9ydix61l35pp6";
   };
 
   postPatch = ''
@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
 
   cmakeFlags =
     optionals (oceSupport) [ "-DKICAD_USE_OCE=ON" "-DOCE_DIR=${opencascade_oce}" ]
-    ++ optional (ngspiceSupport) "-DKICAD_SPICE=ON"
+    ++ optional (ngspiceSupport) "-DKICAD_SPICE=OFF"
     ++ optionals (scriptingSupport) [
       "-DKICAD_SCRIPTING=ON"
       "-DKICAD_SCRIPTING_MODULES=ON"
